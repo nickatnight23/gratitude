@@ -35,10 +35,37 @@ end
       erb :signup
   end
 
+  post '/users' do
+    
+    # Here is where we will create a new user and persist the new user
+    # to the database
+    # params wil be: { "name" => "Sam"., "email" => "sam.sam@email.com"}
+    # "password" =>password}
+    # I only want to persist a user who has a name, email and password
+    if params[:name] != "" && params[:email] != "" && params[:password] != ""
+      # valid input
+    @user = User.create(params)
+    session[:user_id] = @user.id # logging the user in
+    # where do I go now?
+    # lets go to the user show page
+     redirect "/users/#{@user.id}"
+
+    else
+      # not valid input
+      redirect '/signup'
+  end
+end
+
  # users show route
 
    get '/users/:id' do
-    
-    "this will be the users show route"
+    # what do I need to do first?
+    @user = User.find_by(id: params[:id])
+
+    erb :'/users/show'
   end
+
+  get '/logout' do
+    session.clear
+    redirect '/'
 end
