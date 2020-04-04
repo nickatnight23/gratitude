@@ -11,5 +11,6 @@ use Rack::MethodOverride
 # Mount Controller here
 
 use UsersController
+use GratitudeEntriesController
 
 run ApplicationController
