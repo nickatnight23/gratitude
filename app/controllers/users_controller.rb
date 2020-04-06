@@ -35,7 +35,7 @@ end
       erb :signup
   end
 
-  post '/users' do
+  post '/Users' do
     
     # Here is where we will create a new user and persist the new user
     # to the database

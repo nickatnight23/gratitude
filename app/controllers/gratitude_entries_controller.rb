@@ -18,7 +18,7 @@ class GratitudeEntriesController < ApplicationController
             redirect '/'
         end
         # I only want to save if it has some content
-        if params[:content] != ""
+        if params[:content] !=""
         # create a new entry
         @gratitude_entry = GratitudeEntry.create(content: params[:content],
          user_id: current_user.id)
@@ -28,9 +28,19 @@ class GratitudeEntriesController < ApplicationController
         redirect '/gratitude_entries/new'
         
     end
+end
 
     # show route for gratitude entry
+    get '/gratitude_entries/:id' do
+        binding.pry
+
+     @gratitude_entry = GratitudeEntry.find(params[:id])
+
+        erb :'/gratitude_entries/show'
+
+    end
+
+
 
     # index route for all gratitude entries
-end
 end
