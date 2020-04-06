@@ -1,22 +1,22 @@
 class GratitudeEntriesController < ApplicationController
     
     # get gratitude_entries/ new to render a form to create new entry
-    get '/Gratitude_entries/new' do
 
+    get '/gratitude_entries/new' do
+
+        binding.pry
         erb :'/gratitude_entries/new'
-    end
+
+end
 
     # post gratitude_entries to create a new gratitude entry
 
-    post '/Gratitude_entries/gratitude_entries' do
+    post '/gratitude_entries' do
         
         
         # I want to create a new gratitude entry and save it to the DB
         # I also only want to create a gratitude entry if a user is logged in
-        if !logged_in?
-
-            redirect '/'
-        end
+       
         # I only want to save if it has some content
         if params[:content] !=""
         # create a new entry
@@ -28,7 +28,8 @@ class GratitudeEntriesController < ApplicationController
         redirect '/gratitude_entries/new'
         
     end
-end
+ end
+
 
     # show route for gratitude entry
     get '/gratitude_entries/:id' do
