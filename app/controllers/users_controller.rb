@@ -19,16 +19,17 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:email])
     # authenticate the user- verify the user is who they say they are
     # They have the credentials email/password
-   if @user.authenticate(params[:password])
+   if @user && @user.authenticate(params[:password])
      # log the user in- create user session
      session[:user_id] = @user.id # logging the user in
     # redirect to the users landing page(show?, index?, dashboard)
-    
+    binding.pry
+    redirect "/users/#{@user.id}"
    else
+
     # tell the user they entered in invalid credentials
     # redirect to login page
-    puts session
-    redirect "users/#{@user.id}"
+    redirect "/login"
    
     end
 end
@@ -41,7 +42,7 @@ end
       erb :signup
   end
 
-  post '/Users' do
+  post '/users' do
     
     # Here is where we will create a new user and persist the new user
     # to the database
@@ -50,7 +51,7 @@ end
     # I only want to persist a user who has a name, email and password
     if params[:name] != "" && params[:email] != "" && params[:password] != ""
       # valid input
-    @user = User.create(params)
+    @user = User.create(name: params[:name], email: params[:email], password: [:password])
     session[:user_id] = @user.id # logging the user in
     # where do I go now?
     # lets go to the user show page
