@@ -1,4 +1,9 @@
 class GratitudeEntriesController < ApplicationController
+
+    get '/Gratitude_entries' do
+        @gratitude_entries = GratitudeEntry.all
+        erb :'gratitude_entries/index'
+      end
     
     # get gratitude_entries/ new to render a form to create new entry
 
@@ -48,7 +53,7 @@ end
         
         set_gratitude_entry
         if logged_in?
-        if @gratitude_entry.user == current_user
+        if authorized_to_edit?(@gratitude_entry)
         erb  :'/gratitude_entries/edit'
 
         else

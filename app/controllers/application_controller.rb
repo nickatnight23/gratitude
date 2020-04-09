@@ -27,6 +27,11 @@ end
     def current_user
       @current_user ||= User.find(session[:user_id])
     end
+
+    def authorized_to_edit?(gratitude_entry)
+      gratitude_entry.user == current_user
+
+    end
   end
 end
 

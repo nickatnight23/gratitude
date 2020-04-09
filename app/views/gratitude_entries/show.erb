@@ -2,8 +2,9 @@ Show page for a gratitude entry
 
 <p><%= @gratitude_entry.content %></p>
 
-Edit Link
 
+<%if authorized_to_edit?(@gratitude_entry)%>
 <a href="/gratitude_entries/<%=@gratitude_entry.id %>/edit">Edit Entry:</a>
 
 Delete Link
+<%end%>

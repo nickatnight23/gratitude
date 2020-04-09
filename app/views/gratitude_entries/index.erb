@@ -1,1 +1,11 @@
-INDEX PAGE
+ALL GRATITUDE ENTRIES
+
+<% @gratitude_entries.each do |gratitude_entry| %>
+<h4><a href="/gratitude_entries/<%= gratitude_entry.id %>"><%=
+gratitude_entry.created_at %></h4>
+
+    <p><%=gratitude_entry.content %></p>
+    <p>By <%= gratitude_entry.user.name %></p>
+    <br><br>
+
+<% end %>
