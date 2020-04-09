@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     post '/login' do
     # params looks like: {email: "user@user.com", password: "password"}
     # find the user
-    @user = User.find_by(email:params[:email])
+    @user = User.find_by(email: params[:email])
     # authenticate the user- verify the user is who they say they are
     # They have the credentials email/password
    if @user.authenticate(params[:password])
