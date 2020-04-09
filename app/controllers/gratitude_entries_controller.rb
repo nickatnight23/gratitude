@@ -35,7 +35,6 @@ end
 
     # show route for gratitude entry
     get '/gratitude_entries/:id' do
-        binding.pry
 
      @gratitude_entry = GratitudeEntry.find(params[:id])
 
@@ -43,7 +42,14 @@ end
 
     end
 
+    # This route should send us to edit.erb
+    # render an edit form
+    get '/gratitude_entries/:id/edit' do
+        
+        @gratitude_entry = GratitudeEntry.find(params[:id])
 
+        erb  :'/gratitude_entries/edit'
+    end
 
     # index route for all gratitude entries
 end
