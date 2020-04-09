@@ -36,7 +36,7 @@ end
     # show route for gratitude entry
     get '/gratitude_entries/:id' do
 
-     @gratitude_entry = GratitudeEntry.find(params[:id])
+        set_gratitude_entry
 
         erb :'/gratitude_entries/show'
 
@@ -46,10 +46,48 @@ end
     # render an edit form
     get '/gratitude_entries/:id/edit' do
         
-        @gratitude_entry = GratitudeEntry.find(params[:id])
-
+        set_gratitude_entry
+        if logged_in?
+        if @gratitude_entry.user == current_user
         erb  :'/gratitude_entries/edit'
+
+        else
+        redirect "/users/#{current_user.id}"
+        end
+      else
+        redirect '/'
+    end
+end
+
+    # This action's job is to
+    patch '/gratitude_entries/:id' do
+        # 1. find gratitude entry
+        set_gratitude_entry
+        if logged_in?
+        if @gratitude_entry.user == current_user
+
+
+       
+        # 2. modify (update) gratitude entry
+        @gratitude_entry.update(content: params[:content])
+        # 3. redirect to show page
+        redirect "/gratitude_entries/#{@gratitude_entry.id}"
+
+        else
+            redirect "/users/#{current_user.id}"
+        end
+            else
+            redirect '/'
+      end
     end
 
+
     # index route for all gratitude entries
+
+    private
+
+    def set_gratitude_entry
+     @gratitude_entry = GratitudeEntry.find(params[:id]) 
+    end
+
 end

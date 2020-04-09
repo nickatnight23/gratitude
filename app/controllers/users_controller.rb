@@ -23,7 +23,6 @@ class UsersController < ApplicationController
      # log the user in- create user session
      session[:user_id] = @user.id # logging the user in
     # redirect to the users landing page(show?, index?, dashboard)
-    binding.pry
     redirect "/users/#{@user.id}"
    else
 
@@ -51,7 +50,7 @@ end
     # I only want to persist a user who has a name, email and password
     if params[:name] != "" && params[:email] != "" && params[:password] != ""
       # valid input
-    @user = User.create(name: params[:name], email: params[:email], password: [:password])
+    @user = User.create(name: params[:name], email: params[:email], password: params[:password])
     session[:user_id] = @user.id # logging the user in
     # where do I go now?
     # lets go to the user show page

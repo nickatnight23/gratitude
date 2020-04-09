@@ -3,7 +3,8 @@ Edit form for gratitude entry
 <form class="" action="/gratitude_entries/<%=@gratitude_entry.id %>" method="post">
 <input type="hidden" name="_method" value="patch">
 <label for="content">Content:</label>
-<textarea name="content" value="<%=@gratitude_entry.content %>">
-<input type="submit" name="" value="Create Entry">
+<textarea name="content" style="width:auto; height:auto;"><%=@gratitude_entry.content %>
+</textarea>
+<input type="submit" name="" value="Edit Entry">
 
 </form>
