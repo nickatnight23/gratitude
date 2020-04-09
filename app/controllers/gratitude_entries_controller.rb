@@ -4,9 +4,11 @@ class GratitudeEntriesController < ApplicationController
 
     get '/gratitude_entries/new' do
 
-        binding.pry
+        if !logged_in?
+            redirect "/login"
+        else
         erb :'/gratitude_entries/new'
-
+    end
 end
 
     # post gratitude_entries to create a new gratitude entry

@@ -3,7 +3,13 @@ class UsersController < ApplicationController
     # What routes do I need for login?
     # The purpose of this route is to? Is to render the login page (form)
     get '/login' do
+      
+      if !logged_in?
+      
         erb :login
+      else
+        redirect "/users/#{current_user.id}"
+      end
     end
     # The purpose of this route is to receive the login form, 
     # Find the user, and log the user in(create a session)
@@ -11,7 +17,6 @@ class UsersController < ApplicationController
     # params looks like: {email: "user@user.com", password: "password"}
     # find the user
     @user = User.find_by(email:params[:email])
-    binding.pry
     # authenticate the user- verify the user is who they say they are
     # They have the credentials email/password
    if @user.authenticate(params[:password])
