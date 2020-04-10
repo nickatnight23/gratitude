@@ -1,6 +1,6 @@
 class GratitudeEntriesController < ApplicationController
 
-    get '/Gratitude_entries' do
+    get '/gratitude_entries' do
         @gratitude_entries = GratitudeEntry.all
         erb :'gratitude_entries/index'
       end
@@ -87,7 +87,7 @@ end
     end
 
         delete '/gratitude_entries/:id' do
-            
+
             set_gratitude_entry
             if authorized_to_edit?(@gratitude_entry)
                 @gratitude_entry.destroy
