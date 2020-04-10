@@ -5,6 +5,8 @@ Show page for a gratitude entry
 
 <%if authorized_to_edit?(@gratitude_entry)%>
 <a href="/gratitude_entries/<%=@gratitude_entry.id %>/edit">Edit Entry:</a>
-
-Delete Link
+<form class="" action="/gratitude_entries/<%=@gratitude_entry.id %>" method="post">
+<input type="hidden" name="_method" value="DELETE">
+<input type="Submit" name="" value="Delete this Entry">
+</form>
 <%end%>

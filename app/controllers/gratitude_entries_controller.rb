@@ -87,14 +87,15 @@ end
     end
 
         delete '/gratitude_entries/:id' do
+            
             set_gratitude_entry
             if authorized_to_edit?(@gratitude_entry)
                 @gratitude_entry.destroy
-                rediret '/gratitude_entries'
+                redirect '/gratitude_entries'
                 # delete the entry
                 # go some where
             else
-                rediret '/gratitude_entries'
+                redirect '/gratitude_entries'
 
             end
         end
