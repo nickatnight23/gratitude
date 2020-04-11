@@ -1,5 +1,7 @@
 class GratitudeEntriesController < ApplicationController
 
+  
+
     get '/gratitude_entries' do
         @gratitude_entries = GratitudeEntry.all
         erb :'gratitude_entries/index'
@@ -49,40 +51,28 @@ end
 
     # This route should send us to edit.erb
     # render an edit form
-    get '/gratitude_entries/:id/edit' do
-        
+    get '/gratitude_entries/:id/edit' do  
         set_gratitude_entry
-        if logged_in?
-        if authorized_to_edit?(@gratitude_entry)
-        erb  :'/gratitude_entries/edit'
-
+        if logged_in? && authorized_to_edit?(@gratitude_entry)
+            erb  :'/gratitude_entries/edit'
         else
-        redirect "/users/#{current_user.id}"
+            redirect "/users/#{current_user.id}"
         end
-      else
-        redirect '/'
     end
-end
 
     # This action's job is to
     patch '/gratitude_entries/:id' do
         # 1. find gratitude entry
         set_gratitude_entry
-        if logged_in?
-        if @gratitude_entry.user == current_user && params[:content] != ""
-       
         # 2. modify (update) gratitude entry
-        @gratitude_entry.update(content: params[:content])
-        # 3. redirect to show page
-        redirect "/gratitude_entries/#{@gratitude_entry.id}"
-
-        else
-            redirect "/users/#{current_user.id}"
-        end
-
-        else
-            redirect '/'
-      end
+        if params[:content] != ""
+            @gratitude_entry.update(content: params[:content])
+        
+            # 3. redirect to show page
+            redirect "/gratitude_entries/#{@gratitude_entry.id}"
+        else  
+            redirect "/gratitude_entries/#{@gratitude_entry.id}/edit"
+        end 
     end
 
         delete '/gratitude_entries/:id' do
