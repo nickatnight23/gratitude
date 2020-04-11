@@ -69,9 +69,7 @@ end
         # 1. find gratitude entry
         set_gratitude_entry
         if logged_in?
-        if @gratitude_entry.user == current_user
-
-
+        if @gratitude_entry.user == current_user && params[:content] != ""
        
         # 2. modify (update) gratitude entry
         @gratitude_entry.update(content: params[:content])
@@ -81,7 +79,8 @@ end
         else
             redirect "/users/#{current_user.id}"
         end
-            else
+
+        else
             redirect '/'
       end
     end
