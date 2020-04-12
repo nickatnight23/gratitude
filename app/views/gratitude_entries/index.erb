@@ -1,5 +1,22 @@
 ALL GRATITUDE ENTRIES
 
+<html>
+<head>
+<style>
+div {
+  background-color: lightgrey;
+  width: 300px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+body {
+  background-color: grey;
+}
+</style>
+</head>
+<body>
+
 <% @gratitude_entries.each do |gratitude_entry| %>
 <h4><a href="/gratitude_entries/<%= gratitude_entry.id %>"><%=
 gratitude_entry.created_at %></h4>
