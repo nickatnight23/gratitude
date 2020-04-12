@@ -1,4 +1,4 @@
-A Gratitude app that allows users to log in, sign up and create gratitude entries. Users has the option to delete, edit their own entries.
+A Gratitude app that allows users to log in, sign up and create gratitude entries. Users has the option to delete and edit their own entries.
 
 LICENSE
 Copyright <2020> <nickatnight23>
