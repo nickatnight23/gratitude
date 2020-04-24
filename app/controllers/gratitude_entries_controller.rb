@@ -90,7 +90,7 @@ end
         end
 
     private
-
+    # this can not be called outside of the class
     def set_gratitude_entry
      @gratitude_entry = GratitudeEntry.find(params[:id]) 
     end

@@ -25,6 +25,9 @@ end
     end
 
     def current_user
+
+      #reduce the amount of data base calls using an instance variable
+      # if it is already called it will not hit the data base again
       @current_user ||= User.find(session[:user_id])
     end
 
